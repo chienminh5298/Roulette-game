@@ -1,0 +1,215 @@
+@import './App.scss';
+
+#wheel_container {
+	display: flex;
+	align-items: center;
+	position: relative;
+	width: $wheel-size;
+	margin-left: 5rem;
+	@include tablet {
+		margin-top: 2rem;
+		width: $wheel-size;
+	}
+	#winning_number {
+		position: absolute;
+		transform: translate(-50%, -50%);
+		left: 50%;
+		top: 50%;
+		width: calc($wheel-size/2);
+		height: calc($wheel-size/2);
+		border-radius: 50%;
+		z-index: 4;
+		display: none;
+		justify-content: center;
+		align-items: center;
+		span {
+			display: block;
+			width: 100%;
+			text-align: center;
+			color: white;
+			font-size: 2vw;
+			font-family: Georgia, 'Times New Roman', Times, serif;
+		}
+		&.red {
+			background-color: $red;
+		}
+		&.black {
+			background-color: black;
+		}
+		&.green {
+			background-color: green;
+		}
+	}
+	#count_time {
+		position: absolute;
+		z-index: 3;
+		transform: translate(-50%, -50%);
+		top: 50%;
+		left: 50%;
+		width: $wheel-size;
+		height: $wheel-size;
+		background-color: rgba(255, 255, 255, 0.301);
+		border-radius: 50%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		span {
+			color: white;
+			font-size: 3vw;
+		}
+	}
+	#center_tube {
+		width: $wheel-size;
+		height: $wheel-size;
+		position: absolute;
+		animation: centerTube 25s linear infinite;
+		z-index: 1;
+		div {
+			width: calc($wheel-size/10);
+			height: calc($wheel-size/10);
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			background-color: black;
+			z-index: 2;
+			border-radius: 50%;
+		}
+		@keyframes centerTube {
+			100% {
+				transform: rotate(-360deg);
+			}
+		}
+		&::before {
+			content: '';
+			position: absolute;
+			transform: translate(-50%, -50%) rotate(15deg);
+			top: 50%;
+			left: 50%;
+			width: calc($wheel-size/2.5);
+			height: 2px;
+			border-radius: 2px;
+			background-color: rgb(167, 167, 0);
+		}
+		&::after {
+			content: '';
+			position: absolute;
+			transform: translate(-50%, -50%) rotate(15deg);
+			top: 50%;
+			left: 50%;
+			height: calc($wheel-size/2.5);
+			width: 2px;
+			border-radius: 2px;
+			background-color: rgb(167, 167, 0);
+		}
+	}
+	#trim {
+		width: $wheel-size;
+		height: $wheel-size;
+		position: absolute;
+		&::before {
+			content: '';
+			width: $wheel-size + 20px;
+			height: $wheel-size + 20px;
+			border-radius: 50%;
+			position: absolute;
+			transform: translate(-50%, -50%);
+			top: 50%;
+			left: 50%;
+			border: #e1e110 13px solid;
+			box-sizing: border-box;
+			z-index: 2;
+		}
+		&::after {
+			content: '';
+			width: $wheel-size + 0px;
+			height: $wheel-size + 0px;
+			border-radius: 50%;
+			position: absolute;
+			transform: translate(-50%, -50%);
+			top: 50%;
+			left: 50%;
+			border: rgb(153, 153, 5) 3px solid;
+			box-sizing: border-box;
+			z-index: 2;
+		}
+	}
+	#plate {
+		width: $wheel-size;
+		height: $wheel-size;
+		position: relative;
+		animation: plateSpin 30s linear infinite;
+
+		@keyframes plateSpin {
+			100% {
+				transform: rotate(360deg);
+			}
+		}
+		#ball_container {
+			width: calc($wheel-size/1.8);
+			height: calc($wheel-size/1.8);
+			position: absolute;
+			transform: translate(-50%, -50%);
+			border-radius: 50%;
+			top: 50%;
+			left: 50%;
+			background-color: #ffffff38;
+			border: #7977774a solid 15px;
+			box-sizing: border-box;
+			z-index: 3;
+			#ball_center {
+				position: absolute;
+				bottom: 50%;
+				left: 50%;
+				height: calc($wheel-size/3.6);
+				width: 2px;
+				transform-origin: bottom;
+				transform: rotate(0deg);
+				#ball {
+					position: absolute;
+					transform: translate(-50%, 0%);
+					top: 0%;
+					left: 50%;
+					width: calc($wheel-size/25);
+					height: calc($wheel-size/25);
+					border-radius: 50%;
+					background-color: white;
+				}
+			}
+		}
+		#number_0 {
+			background-color: green;
+		}
+		.number {
+			position: absolute;
+			transform-origin: bottom;
+			width: $number-width;
+			height: calc($wheel-size/2);
+			left: calc(50% - $number-width/2);
+			top: 0;
+			clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+			color: white;
+			&#number_0 {
+				background-image: linear-gradient(to bottom, #000000 0%, #11440d 2%, #257016 16%, #1fc61f 30%, #19ff00 73%, #19ff00 73%);
+			}
+			&:nth-child(odd) {
+				background-image: linear-gradient(to bottom, #000000 0%, #2d0909 2%, #601212 11%, #991818 25%, #c41f1f 44%);
+			}
+			&:nth-child(even) {
+				background-color: black;
+			}
+			span {
+				display: block;
+				text-align: center;
+				transform: scale(1, 1.8);
+				margin-top: 15px;
+				font-family: Georgia, 'Times New Roman', Times, serif;
+			}
+			@for $i from 2 through 38 {
+				&:nth-child(#{$i}) {
+					transform: rotate(#{9.7297 * $i - 9.7297 * 2}deg);
+				}
+			}
+		}
+	}
+}

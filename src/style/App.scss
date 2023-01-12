@@ -1,0 +1,68 @@
+$wheel-size: 350px;
+$number-width: 31px;
+$table-color: #246d15;
+$red: #841616;
+
+$mobile-width: 480px;
+$tablet-width: 768px;
+$desktop-width: 1280px;
+$width-per-height: calc(1vw / 1vh);
+@mixin mobile {
+	@media (max-width: #{$tablet-width - 1px}) {
+		@content;
+	}
+}
+
+@mixin tablet {
+	@media (max-width: #{$desktop-width - 1px}) {
+		@content;
+	}
+}
+
+@mixin desktop {
+	@media (min-width: #{$desktop-width}) {
+		@content;
+	}
+}
+
+body {
+	margin: 0;
+}
+
+#game_container {
+	width: 100vw;
+	min-height: 100vh;
+	background-color: #dc5f00;
+	position: relative;
+	@include tablet {
+		padding-bottom: 2rem;
+	}
+	#wheel_and_table_container {
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		width: 100%;
+		min-height: 50vh;
+		@include tablet {
+			flex-wrap: wrap;
+		}
+	}
+	#dashboard {
+		@include tablet {
+			position: relative;
+			margin-top: 15px;
+		}
+		position: absolute;
+		bottom: 5%;
+		transform: translate(-50%, 0);
+		left: 50%;
+		min-height: 20vh;
+		width: 90vw;
+		border-radius: 50px;
+		background-color: green;
+		padding: 2rem;
+		box-sizing: border-box;
+		background: #dc5f00;
+		box-shadow: inset 8px 8px 0px #bd5200, inset -8px -8px 0px #fb6c00;
+	}
+}

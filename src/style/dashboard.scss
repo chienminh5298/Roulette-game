@@ -1,0 +1,68 @@
+@import './App.scss';
+
+#dashboard_container {
+	height: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: center;
+	.dashboard_item {
+		text-align: center;
+		color: white;
+		font-family: monospace;
+		font-size: 1.5vw;
+		padding: 15px 30px;
+		background: linear-gradient(145deg, #eb6600, #c65600);
+		border-radius: 15px;
+		box-shadow: 5px 5px 5px #fb6c00, -5px -5px 5px #bd5200;
+		@include tablet {
+			width: 33.33%;
+			margin-top: 15px;
+		}
+	}
+	#chips {
+		margin-top: 5px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		.chip {
+			cursor: pointer;
+			margin: 5px;
+			width: 3.5vw;
+			height: 3.5vw;
+			border: white solid 1px;
+			justify-content: center;
+			align-items: center;
+			display: flex;
+			border-radius: 50%;
+			&.active {
+				width: 4.5vw;
+				height: 4.5vw;
+			}
+		}
+	}
+	#history_container {
+		width: 30%;
+		display: flex;
+		flex-wrap: wrap;
+		.history_number {
+			font-size: 1vw;
+			margin: 1px;
+			width: 2vw;
+			height: 2vw;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border: black solid 1px;
+			&.red {
+				background-color: $red;
+			}
+			&.black {
+				background-color: black;
+			}
+			&.green {
+				background-color: green;
+			}
+		}
+	}
+}
