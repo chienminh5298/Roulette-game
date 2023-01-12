@@ -65,4 +65,32 @@ body {
 		background: #dc5f00;
 		box-shadow: inset 8px 8px 0px #bd5200, inset -8px -8px 0px #fb6c00;
 	}
+	#how_to_play_and_sound_container {
+		margin: 10px 5rem;
+		display: flex;
+		button {
+			padding: 5px 10px;
+			margin: 0 10px;
+			outline: none;
+			border: none;
+			cursor: pointer;
+			border-radius: 6px;
+			font-size: 1vw;
+			&:active {
+				transform: translate(2px, 2px);
+			}
+			&#pay_rule {
+				background-color: #1ed5ff;
+				box-shadow: -2px -2px 2px #1ab9de;
+			}
+			&#mute {
+				background-color: yellow;
+				box-shadow: -2px -2px 2px #dede00;
+				&.unmute {
+					background-color: red;
+					box-shadow: -2px -2px 2px #de0000;
+				}
+			}
+		}
+	}
 }

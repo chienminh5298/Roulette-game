@@ -35,9 +35,29 @@
 			align-items: center;
 			display: flex;
 			border-radius: 50%;
+			position: relative;
 			&.active {
-				width: 4.5vw;
-				height: 4.5vw;
+				width: 5.5vw;
+				height: 5.5vw;
+				border: white solid 5px;
+				img {
+					animation: chipRotate 10s linear infinite;
+					@keyframes chipRotate {
+						100% {
+							transform: rotate(360deg);
+						}
+					}
+				}
+				span{
+					font-size: 1.5vw;
+				}
+			}
+			img {
+				width: 100%;
+			}
+			span {
+				position: absolute;
+				font-size: 0.7vw;
 			}
 		}
 	}

@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react';
 
 import 'src/style/wheel.scss';
 import $ from 'jquery';
-import { getRndInteger, checkWinningNumber } from 'src/helper';
+import { getRndInteger, checkWinningNumber, winningEffect, paid } from 'src/helper';
 import Keyframes from '@keyframes/core';
 import { time as timeSetting } from 'src/setting';
+import sound from './audio/spin.mp3'
 
-function Wheel({ getWinning }) {
+function Wheel({ getWinning, setBetTime, mute }) {
 	var [time, setTime] = useState(timeSetting.bet_time);
 	var [degree, setDegree] = useState(0);
+
 	var [winning_number, setWinning_number] = useState({
 		number: 0,
 		color: 'green',
@@ -20,7 +22,12 @@ function Wheel({ getWinning }) {
 	useEffect(() => {
 		var interval = setInterval(() => {
 			if (time === 0) {
+				setBetTime(false);
 				clearInterval(interval);
+				if (!mute) {
+					var audio = new Audio(sound);
+					audio.play();
+				}
 				$('#count_time').css('display', 'none');
 				var rnd = getRndInteger(3600, 7200); // Get random degree
 				var win_num = checkWinningNumber(rnd % 360);
@@ -44,7 +51,9 @@ function Wheel({ getWinning }) {
 					/**After spin done => show winning number */
 					onEnd: () => {
 						$('#winning_number').css('display', 'flex');
+						winningEffect(win_num);
 						setWinning_number(win_num);
+						getWinning(win_num); // pass winning number to parent compoent
 					},
 				});
 
@@ -53,8 +62,11 @@ function Wheel({ getWinning }) {
 				setTimeout(() => {
 					$('#count_time').css('display', 'flex');
 					$('#winning_number').css('display', 'none');
-					getWinning(win_num); // pass winning number to parent compoent
 					setTime(timeSetting.bet_time);
+					setBetTime(true);
+					$('.bet_slot').removeClass('win_effect'); // clear win effect
+					$('#won_container span').html(`0$`); // clear won credit
+					$('.betChip').html(''); // clear chip on table
 				}, timeSetting.spin_time + timeSetting.show_winning);
 			} else {
 				setTime(time - 1);

@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react';
 
 import 'src/style/dashboard.scss';
 import { numbers } from 'src/setting';
+import chip1 from './image/chip1.png';
+import chip2 from './image/chip2.png';
+import chip3 from './image/chip3.png';
 
-const Dashboard = ({ winningNumber, setBet }) => {
+const Dashboard = ({ winningNumber, setBet, credit }) => {
 	var [history, setHistory] = useState([
 		{ number: 4, color: 'black', deg: 38.9188 },
 		{ number: 20, color: 'black', deg: 233.51279999999997 },
@@ -43,7 +46,7 @@ const Dashboard = ({ winningNumber, setBet }) => {
 	return (
 		<div id='dashboard_container'>
 			<div id='credit_container' className='dashboard_item'>
-				Credit: <span>1000$</span>
+				Credit: <span>{credit}$</span>
 			</div>
 			<div id='won_container' className='dashboard_item'>
 				Win: <span>0$</span>
@@ -58,7 +61,8 @@ const Dashboard = ({ winningNumber, setBet }) => {
 						}}
 						className='chip active'
 					>
-						1$
+						<img src={chip1} alt='1$' />
+						<span>1</span>
 					</div>
 					<div
 						value={5}
@@ -67,7 +71,8 @@ const Dashboard = ({ winningNumber, setBet }) => {
 						}}
 						className='chip'
 					>
-						5$
+						<img src={chip2} alt='5$' />
+						<span>5</span>
 					</div>
 					<div
 						value={10}
@@ -76,7 +81,8 @@ const Dashboard = ({ winningNumber, setBet }) => {
 						}}
 						className='chip'
 					>
-						10$
+						<img src={chip3} alt='10$' />
+						<span>10</span>
 					</div>
 				</div>
 			</div>

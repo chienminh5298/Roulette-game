@@ -10,6 +10,17 @@
 		margin-top: 2rem;
 		width: 100%;
 	}
+	.win_effect {
+		animation: win_effect 1s linear infinite;
+		@keyframes win_effect {
+			50% {
+				background-color: rgb(172, 172, 0);
+			}
+			100% {
+				background-color: $table-color;
+			}
+		}
+	}
 	span {
 		font-family: Verdana, Geneva, Tahoma, sans-serif;
 		color: white;
@@ -27,6 +38,7 @@
 		justify-content: center;
 		align-items: center;
 		border: solid white 1px;
+		position: relative;
 		cursor: pointer;
 		span {
 			font-weight: bold;
@@ -51,8 +63,13 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
+			position: relative;
 			cursor: pointer;
-			span {
+			p {
+				color: white;
+				font-size: 1vw;
+				font-weight: bold;
+				font-family: Verdana, Geneva, Tahoma, sans-serif;
 				transform: rotate(-90deg);
 			}
 		}
@@ -72,6 +89,7 @@
 				align-items: center;
 				height: 50%;
 				border-bottom: white solid 1px;
+				position: relative;
 			}
 			.bonus_mini_container {
 				display: flex;
@@ -140,6 +158,7 @@
 				align-items: center;
 				height: 33.33%;
 				cursor: pointer;
+				position: relative;
 				span {
 					display: flex;
 					justify-content: center;
@@ -157,5 +176,30 @@
 				}
 			}
 		}
+	}
+	.betChip {
+		position: absolute;
+		width: 40px;
+		height: 40px;
+		transform: translate(-50%, -50%);
+		left: 50%;
+		top: 50%;
+		span {
+			position: absolute !important;
+			transform: translate(-50%, -50%);
+			left: 50%;
+			top: 50%;
+			font-size: 0.5vw !important;
+		}
+		img {
+			width: 100%;
+		}
+	}
+	.number:active,
+	.bonus_12:active,
+	.bonus_mini:active,
+	#zero_column:active,
+	.row:active {
+		transform: translate(1px, 1px);
 	}
 }
