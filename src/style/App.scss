@@ -2,11 +2,15 @@ $wheel-size: 350px;
 $number-width: 31px;
 $table-color: #246d15;
 $red: #841616;
+$background: #2b2b2b;
+$background-light: #313131;
+$background-dark: #252525;
 
 $mobile-width: 480px;
 $tablet-width: 768px;
 $desktop-width: 1280px;
 $width-per-height: calc(1vw / 1vh);
+
 @mixin mobile {
 	@media (max-width: #{$tablet-width - 1px}) {
 		@content;
@@ -32,7 +36,7 @@ body {
 #game_container {
 	width: 100vw;
 	min-height: 100vh;
-	background-color: #dc5f00;
+	background-color: $background;
 	position: relative;
 	@include tablet {
 		padding-bottom: 2rem;
@@ -62,8 +66,8 @@ body {
 		background-color: green;
 		padding: 2rem;
 		box-sizing: border-box;
-		background: #dc5f00;
-		box-shadow: inset 8px 8px 0px #bd5200, inset -8px -8px 0px #fb6c00;
+		background: $background;
+		box-shadow: inset 8px 8px 0px $background-dark, inset -8px -8px 0px $background-light;
 	}
 	#how_to_play_and_sound_container {
 		margin: 10px 5rem;
@@ -91,6 +95,22 @@ body {
 					box-shadow: -2px -2px 2px #de0000;
 				}
 			}
+		}
+	}
+	#payout_img {
+		position: absolute;
+		transform: translate(-50%, -50%);
+		left: 50%;
+		top: 50%;
+		z-index: 4;
+		width: 50vw;
+		border-radius: 25px;
+		overflow: hidden;
+		img {
+			width: 100%;
+		}
+		&.d-none {
+			display: none;
 		}
 	}
 }

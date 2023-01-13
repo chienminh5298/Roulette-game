@@ -12,9 +12,9 @@
 		font-family: monospace;
 		font-size: 1.5vw;
 		padding: 15px 30px;
-		background: linear-gradient(145deg, #eb6600, #c65600);
+		background: linear-gradient(145deg, $background-light, $background-dark);
 		border-radius: 15px;
-		box-shadow: 5px 5px 5px #fb6c00, -5px -5px 5px #bd5200;
+		box-shadow: 5px 5px 5px $background-dark, -5px -5px 5px $background-light;
 		@include tablet {
 			width: 33.33%;
 			margin-top: 15px;
@@ -48,7 +48,7 @@
 						}
 					}
 				}
-				span{
+				span {
 					font-size: 1.5vw;
 				}
 			}
